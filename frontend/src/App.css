@@ -1,12 +1,23 @@
-
 :root {
-  --primary: #0f172a;
-  --secondary: #004b50;
-  --accent: #059669;
-  --text-light: #f8fafc;
-  --text-dark: #334155;
-  --bg-main: #f1f5f9;
+  --primary: #17324d;
+  --secondary: #dff3ff;
+  --accent: #5fbd91;
+  --accent-light: #dff5e8;
+  --blue-light: #eaf6ff;
+  --text-light: #ffffff;
+  --text-dark: #29465b;
+  --text-muted: #647f91;
+  --bg-main: #f2faff;
   --bg-card: #ffffff;
+  --border: #d9ebf5;
+}
+
+/* =========================
+   GLOBAL
+   ========================= */
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -16,25 +27,37 @@ body {
   color: var(--text-dark);
 }
 
+
+/* =========================
+   MAIN APP
+   ========================= */
+
 .app-container {
   display: flex;
   height: 100vh;
+  background: var(--bg-main);
 }
+
+
+/* =========================
+   SIDEBAR
+   ========================= */
 
 .sidebar {
   width: 250px;
-  background: var(--primary);
+  background: #17324d;
   color: var(--text-light);
   padding: 20px;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 2rem;
-  color: var(--accent);
+  color: #a8e6cf;
 }
 
 .sidebar nav {
@@ -45,51 +68,93 @@ body {
 
 .sidebar button {
   background: transparent;
-  color: var(--text-light);
+  color: #eaf6ff;
   border: none;
   text-align: left;
   padding: 12px 15px;
   font-size: 1rem;
   cursor: pointer;
-  border-radius: 6px;
-  transition: 0.3s;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
-.sidebar button:hover, .sidebar button.active {
-  background: var(--secondary);
+.sidebar button:hover {
+  background: #294e68;
 }
+
+.sidebar button.active {
+  background: #a8e6cf;
+  color: #17324d;
+  font-weight: 600;
+}
+
+
+/* =========================
+   MAIN CONTENT
+   ========================= */
 
 .main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  background: var(--bg-main);
 }
 
+
+/* =========================
+   HEADER
+   ========================= */
+
 header {
-  background: var(--secondary);
-  color: white;
+  background: #ffffff;
+  color: var(--primary);
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  box-shadow: 0 2px 10px rgba(50, 100, 130, 0.08);
+  border-bottom: 1px solid var(--border);
 }
 
 header h1 {
   margin: 0;
   font-size: 1.25rem;
+  color: var(--primary);
 }
+
+.user-profile {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+
+/* =========================
+   DASHBOARD AREA
+   ========================= */
 
 .dashboard-content {
   padding: 30px;
   overflow-y: auto;
+  background: var(--bg-main);
 }
+
+
+/* =========================
+   MODULE TITLE
+   ========================= */
 
 .module h3 {
   margin-top: 0;
   color: var(--primary);
   font-size: 1.5rem;
+  margin-bottom: 20px;
 }
+
+
+/* =========================
+   KPI / STAT CARDS
+   ========================= */
 
 .stats {
   display: grid;
@@ -101,14 +166,20 @@ header h1 {
 .stat-card {
   background: var(--bg-card);
   padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  border-left: 4px solid var(--accent);
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(60, 120, 150, 0.08);
+  border-left: 5px solid var(--accent);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(60, 120, 150, 0.13);
 }
 
 .stat-card h4 {
   margin: 0;
-  color: #64748b;
+  color: var(--text-muted);
   font-size: 0.9rem;
   text-transform: uppercase;
 }
@@ -120,12 +191,30 @@ header h1 {
   color: var(--primary);
 }
 
+
+/* =========================
+   DATA TABLE CARDS
+   ========================= */
+
 .data-table {
   background: var(--bg-card);
   padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(60, 120, 150, 0.07);
+  border: 1px solid var(--border);
+  margin-bottom: 25px;
 }
+
+.data-table h4 {
+  margin-top: 0;
+  color: #315b78;
+  font-size: 1.05rem;
+}
+
+
+/* =========================
+   TABLE
+   ========================= */
 
 table {
   width: 100%;
@@ -133,17 +222,31 @@ table {
   margin-top: 15px;
 }
 
-th, td {
+th,
+td {
   padding: 12px 15px;
   text-align: left;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2edf3;
 }
 
 th {
-  background: #f8fafc;
-  color: #64748b;
+  background: var(--blue-light);
+  color: #52708a;
   font-weight: 600;
 }
+
+td {
+  color: var(--text-dark);
+}
+
+tbody tr:hover {
+  background: #f7fcff;
+}
+
+
+/* =========================
+   STATUS BADGES
+   ========================= */
 
 .status-badge {
   padding: 4px 10px;
@@ -152,22 +255,143 @@ th {
   font-weight: 600;
 }
 
-.status-badge.progress { background: #dbeafe; color: #1e40af; }
-.status-badge.resolved { background: #dcfce7; color: #166534; }
-.status-badge.approved { background: #dcfce7; color: #166534; }
-.status-badge.pending { background: #fef9c3; color: #854d0e; }
-.status-badge.active { background: #dbeafe; color: #1e40af; }
+.status-badge.progress {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.status-badge.resolved {
+  background: #dff5e8;
+  color: #24704e;
+}
+
+.status-badge.approved {
+  background: #dff5e8;
+  color: #24704e;
+}
+
+.status-badge.pending {
+  background: #fff5cc;
+  color: #856404;
+}
+
+.status-badge.active {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+
+/* =========================
+   NORMAL BUTTONS
+   ========================= */
 
 button {
   background: var(--accent);
   color: white;
   border: none;
   padding: 6px 12px;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background: #047857;
+  background: #4da77d;
+}
+
+.data-table button {
+  background: #6bbf9a;
+}
+
+.data-table button:hover {
+  background: #4da77d;
+}
+
+
+/* =========================
+   M4 GOVERNANCE ANALYTICS
+   ========================= */
+
+/* M4 KPI cards */
+.m4-module .stat-card {
+  border-left: 5px solid #6bbf9a;
+  background: #ffffff;
+}
+
+/* M4 KPI values */
+.m4-module .stat-card p {
+  color: #17324d;
+}
+
+/* M4 section cards */
+.m4-module .data-table {
+  border-top: 4px solid #dff5e8;
+}
+
+/* M4 table headings */
+.m4-module .data-table th {
+  background: #eaf6ff;
+}
+
+/* M4 values */
+.m4-module .data-table td:last-child {
+  font-weight: 600;
+  color: #2e8061;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+
+  .sidebar {
+    width: 210px;
+  }
+
+  .dashboard-content {
+    padding: 20px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+
+  .app-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .sidebar nav {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .sidebar button {
+    white-space: nowrap;
+  }
+
+  header {
+    padding: 12px 18px;
+  }
+
+  .dashboard-content {
+    padding: 15px;
+  }
+
+  .data-table {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 600px;
+  }
 }
