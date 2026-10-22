@@ -1,0 +1,37 @@
+databases:
+  - name: civicpulse-db
+    plan: free
+    databaseName: civicpulse_db
+    user: civicpulse
+
+services:
+  - type: web
+    name: civicpulse-backend
+    runtime: docker
+    plan: free
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/applications
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: civicpulse-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: civicpulse-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: civicpulse-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: civicpulse-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: civicpulse-db
+          property: password
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://bkusumakumari-dev.github.io
